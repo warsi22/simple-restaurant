@@ -1,0 +1,56 @@
+@model MenuItem
+@{
+    ViewData["Title"] = "Add Menu Item";
+}
+
+<h1 class="page-title mb-4">Add Menu Item</h1>
+
+<div class="panel" style="max-width: 640px;">
+    @* asp-action="Create" + method="post" sends the form to MenuController.Create(MenuItem).
+       The form tag helper also adds a hidden anti-forgery token automatically. *@
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            @* asp-for links the input to a model property: it sets the name, value and validation rules. *@
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <label asp-for="Price" class="form-label">Price (€)</label>
+                <input asp-for="Price" class="form-control" type="number" step="0.01" min="0.01" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3">
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
+                    <option value="0">-- Choose a category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsAvailable" class="form-check-input" />
+            <label asp-for="IsAvailable" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-restaurant">Save</button>
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @* Adds client-side validation, so errors appear before the form is even submitted. *@
+    <partial name="_ValidationScriptsPartial" />
+}

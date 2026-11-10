@@ -1,0 +1,87 @@
+/* ---------- Restaurant theme ---------- */
+:root {
+  --restaurant-red: #7b1e1e;
+  --restaurant-red-dark: #5a1414;
+  --restaurant-cream: #fbf7f0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: 70px;
+  background-color: var(--restaurant-cream);
+}
+
+.navbar-restaurant {
+  background-color: var(--restaurant-red);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.page-title {
+  color: var(--restaurant-red-dark);
+}
+
+.btn-restaurant {
+  background-color: var(--restaurant-red);
+  border-color: var(--restaurant-red);
+  color: #fff;
+}
+
+.btn-restaurant:hover,
+.btn-restaurant:focus {
+  background-color: var(--restaurant-red-dark);
+  border-color: var(--restaurant-red-dark);
+  color: #fff;
+}
+
+/* Dashboard summary cards */
+.stat-card {
+  border: none;
+  border-left: 5px solid var(--restaurant-red);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card .stat-icon {
+  font-size: 2rem;
+}
+
+.stat-card .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+/* White panels for tables and forms */
+.panel {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  padding: 1.25rem;
+}
+
+.table thead th {
+  white-space: nowrap;
+}
+
+.quantity-input {
+  max-width: 90px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

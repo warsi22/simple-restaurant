@@ -1,0 +1,13 @@
+@model OrderStatus
+@* A coloured label for an order status. Used on the dashboard, order list and order details. *@
+@{
+    var colour = Model switch
+    {
+        OrderStatus.Pending => "bg-secondary",
+        OrderStatus.Preparing => "bg-warning text-dark",
+        OrderStatus.Completed => "bg-success",
+        OrderStatus.Cancelled => "bg-danger",
+        _ => "bg-light text-dark"
+    };
+}
+<span class="badge @colour">@Model</span>
