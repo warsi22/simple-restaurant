@@ -1,0 +1,30 @@
+@model MenuItem
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1 class="page-title mb-4">@Model.Name</h1>
+
+<div class="panel" style="max-width: 640px;">
+    <dl class="row mb-0">
+        <dt class="col-sm-4">Description</dt>
+        <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Description) ? "-" : Model.Description)</dd>
+
+        <dt class="col-sm-4">Category</dt>
+        <dd class="col-sm-8">@Model.Category?.Name</dd>
+
+        <dt class="col-sm-4">Price</dt>
+        <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+
+        <dt class="col-sm-4">Available</dt>
+        <dd class="col-sm-8">@(Model.IsAvailable ? "Yes" : "No")</dd>
+
+        <dt class="col-sm-4">Created</dt>
+        <dd class="col-sm-8">@Model.CreatedDate.ToLocalTime().ToString("dd MMM yyyy HH:mm")</dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-outline-secondary" asp-action="Index">Back to Menu</a>
+</div>

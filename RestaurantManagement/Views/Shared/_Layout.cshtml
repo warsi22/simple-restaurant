@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - The Simple Bistro</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <!-- Responsive navbar: collapses into a "hamburger" button on small screens. -->
+        <nav class="navbar navbar-expand-md navbar-dark navbar-restaurant mb-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">🍽️ The Simple Bistro</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Menu" asp-action="Index">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Category" asp-action="Index">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Order" asp-action="Index">Orders</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-warning" asp-controller="Order" asp-action="Create">+ New Order</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-4">
+            <!-- Success / error messages stored in TempData by the controllers. -->
+            <partial name="_Notifications" />
+
+            <!-- Each view's own content is inserted here. -->
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer border-top text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - The Simple Bistro &middot; ASP.NET Core MVC learning project
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
