@@ -32,6 +32,14 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
+// Apply any pending EF Core migrations at startup, so a fresh database
+// (e.g. on Railway) gets its tables created automatically.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<RestaurantDbContext>();
+    db.Database.Migrate();
+}
+
 // ---------- 2. Configure the HTTP request pipeline ----------
 
 if (!app.Environment.IsDevelopment())
